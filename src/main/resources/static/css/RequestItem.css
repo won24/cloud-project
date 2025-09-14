@@ -1,0 +1,233 @@
+/* 이미지 미리보기 스타일 */
+.request-image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.image-preview-item {
+    position: relative;
+    display: inline-block;
+}
+
+.image-preview-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.img-delete-button {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.img-delete-button:hover {
+    background-color: #c82333;
+}
+
+/* 폼 유효성 표시 */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: #dc3545;
+}
+
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+    border-color: #28a745;
+}
+
+/* 제출 버튼 비활성화 */
+.request-submit:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.request-submit:not(:disabled):hover {
+    background-color: #0056b3;
+}
+
+/* 날짜 입력 스타일 */
+input[type="datetime-local"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 숫자 입력 스타일 */
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 작은 설명 텍스트 */
+small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 12px;
+}
+
+/* 파일 입력 영역 */
+.request-image {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.request-img-allDelete-button {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.request-img-allDelete-button:hover {
+    background-color: #c82333;
+}
+
+
+.requestItem-container{
+    display: flex;
+    flex-direction: column;  /* 수직으로 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: flex-start; /* 위에서부터 쌓이도록 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    max-width: 1200px;  /* 최대 너비 설정 */
+    width: 1000px; /* 전체 폭 설정 */
+    color: #222; /* 값 색상 */
+}
+
+.request-notice{
+    padding-bottom: 10px;
+}
+
+.form-group{
+    padding-top: 5px;
+}
+
+.request-image{
+    display: flex;
+    align-items: center; /* 수평 중앙 정렬 */
+    gap: 10px;
+}
+
+.request-img-allDelete-button{
+    padding: 10px;
+    color: #454545;
+    background-color: #ffffff;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* 그림자와 크기 변화 */
+    text-decoration: none;
+}
+
+.request-img-allDelete-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 */
+    transform: translateY(-2px); /* 살짝 위로 이동 */
+}
+
+.request-image-preview{
+    margin-bottom: 50px;
+}
+
+.img-delete-button{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #454545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
+.request-submit{
+    display: flex;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 10px 20px;
+    background-color: #454545;
+    color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* 그림자와 크기 변화 */
+}
+
+
+.request-submit:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 */
+    transform: translateY(-2px); /* 살짝 위로 이동 */
+}
+
+textarea
+{
+    resize: none;
+}
+
+#categoryCode {
+    width: 218px; /* 원하는 너비로 조정 */
+    height: 35.5px; /* 원하는 높이로 조정 */
+    font-size: 16px; /* 글자 크기 */
+    padding: 5px 10px; /* 내부 여백 */
+}
+
+/* DatePicker 스타일 */
+.react-datepicker-wrapper {
+    width: 200px; /* DatePicker의 너비 */
+}
+
+.react-datepicker__input-container input {
+    width: 100%; /* 입력 필드가 wrapper의 전체 너비를 차지하도록 */
+    height: 15px; /* 높이 조정 */
+    font-size: 16px; /* 글자 크기 */
+    padding: 5px 10px; /* 내부 여백 */
+}
+
+/* DatePicker 캘린더 팝업의 크기 조정 (선택사항) */
+.react-datepicker {
+    font-size: 1em; /* 전체적인 크기 조정 */
+}
+
+.react-datepicker__header {
+    padding-top: 0.8em;
+}
+
+.react-datepicker__month {
+    margin: 0.4em 1em;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+    width: 1.9em;
+    line-height: 1.9em;
+    margin: 0.166em;
+}

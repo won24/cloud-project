@@ -1,0 +1,19 @@
+.footer-container{
+    /* margin: 10px; */
+    margin-bottom: 0;
+    background: #343434;
+    color: white;
+    height: 146px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;  /* 수직으로 정렬 */
+    justify-content: flex-start; /* 위에서부터 쌓이도록 설정 */
+}
+
+.footer-a {
+    padding-top: 25px;
+}
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}

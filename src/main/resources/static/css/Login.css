@@ -1,0 +1,190 @@
+/* General Layout for Centering Form */
+.login-form
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 305px;
+}
+
+/* Reset box-sizing for all inputs */
+.login-form input[type="text"]
+{
+    box-sizing: border-box; /* Include padding and border in width */
+    width: 100%;
+    max-width: 180px;
+    padding: 8px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: inherit; /* Inherit font styles to prevent differences */
+    font-size: 14px; /* Standardize font size */
+    line-height: 1.5; /* Ensure consistent line-height */
+}
+
+.login-form input[type="password"]
+{
+    box-sizing: border-box; /* Include padding and border in width */
+    width: 100%;
+    max-width: 180px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: inherit; /* Inherit font styles to prevent differences */
+    font-size: 14px; /* Standardize font size */
+    line-height: 1.5; /* Ensure consistent line-height */
+}
+
+/* Debugging: Add outline to visualize sizes */
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus
+{
+    accent-color: #343434; /* Optional: for debugging focus styles */
+}
+
+
+/* Button Wrappers for Alignment */
+.login-button-wrapper
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for Form Items (Input + Button) */
+.item
+{
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Space between input and button */
+    margin-top: 4px;
+    margin-bottom: 3px;
+}
+
+/* Input fields in .item (flexible input field) */
+.item input
+{
+    width: 100%;
+    max-width: 250px; /* Limit input width */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.item .inputs-wrapper
+{
+    display: flex;
+    flex-direction: column; /* Stack the textboxes vertically */
+}
+
+.check-item
+{
+    /* margin-bottom: 10px; */
+    margin-left: -4px;
+    font-size: 9px;
+    zoom: 1.5;
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    accent-color: #343434;
+}
+
+/* Common Button Styles */
+.login-button
+{
+    height: 82px; /* Approximately height of two textboxes + gaps */
+    padding: 10px 25px; /* Optional: Adjust for better appearance */
+    background-color: #343434;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button2
+{
+    padding: 10px 25px;
+    background-color: #343434;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.login-button:hover:not(:disabled),
+.login-button2:hover
+{
+    background-color: #000000;
+}
+
+/* Disabled State for Buttons */
+.login-button:disabled
+{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Additional Button Styling (for specific buttons like login) */
+.login-button2
+{
+    font-size: 14px; /* Specific size for secondary buttons */
+}
+
+/* Styling for buttons when inside form items (e.g., submit buttons) */
+.item .login-button
+{
+    padding: 8px 16px;
+    width: auto; /* Adjust button width to fit content */
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.description
+{
+    font-size: 0.85em;
+    color: #666;
+}
+
+.react-modal-overlay
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Dim background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.react-modal-content
+{
+    width: 400px; /* Adjust as needed */
+    max-width: 90%;
+    height: auto;
+    max-height: 80vh;
+    background: #fff;
+    /* border-radius: 8px; */
+    border: 5px solid black;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* overflow-y: auto; */
+}

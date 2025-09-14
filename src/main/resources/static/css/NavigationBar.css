@@ -1,0 +1,94 @@
+.navContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 수직 정렬 */
+    text-decoration: none;
+    padding:20px;
+    gap: 60px;
+    height: 70px;
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.logo {
+    margin-top: 10px;
+    width: 140px; /* 로고 영역 크기 조정 */
+    height: 70px; /* 로고 영역 높이 */
+    background-image: url('../images/logo.png'); /* 로고 이미지 경로 */
+    background-size: contain; /* 이미지 크기 비율 유지 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center; /* 이미지 가운데 정렬 */
+}
+
+
+.menuContainer{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    font-size: 20px;
+}
+
+.nav-link {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit;
+}
+
+.login{
+    font-size: 15px;
+}
+
+.user-welcome
+{
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+    padding-top: 7px;
+}
+
+.main-page_button
+{
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #343434;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.main-page_button:hover
+{
+    background-color: #000000;
+}
+
+.user-info-container
+{
+    display: flex;
+    margin-top: 5px;
+}
+
+.main-page_cash{
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 6px;
+}
+
+.login-button_return{
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+
+/* 버튼 그룹 */
+.login-buttons {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+}

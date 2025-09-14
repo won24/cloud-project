@@ -1,0 +1,211 @@
+.auction-page{
+    display: flex;
+    flex-direction: column;  /* 수직으로 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: flex-start; /* 위에서부터 쌓이도록 설정 */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%; /* 부모 컨테이너 크기 */
+}
+
+.auctionCategory > a{
+    padding: 20px;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 클릭 후 색 변경 방지 */
+}
+
+.search-check{
+    display: flex;
+    align-items: center; /* 세로 정렬 */
+    justify-content: space-between; /* 태그 간 공간 균등 분배 */
+    flex-wrap: wrap; /* 작은 화면에서도 요소가 줄바꿈 가능 */
+    gap: 430px; /* 태그 간 간격 */
+    margin-top: 20px;
+}
+.auctionSearch{
+    display: flex;
+    justify-content: space-between;  /* 슬라이드 리스트와 슬라이더를 양옆으로 배치 */
+    align-items: center;  /* 수직 중앙 정렬 */
+    width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #A4A4A4;
+}
+
+.auctionSearchInput{
+    border: none;
+    padding: 5px;
+}
+
+.auctionSearchInput:focus {
+    outline: none; /* 기본 아웃라인 제거 */
+    box-shadow: none; /* 박스 그림자 제거 (브라우저 기본 효과 방지) */
+}
+
+.auctionSearchBtn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+.check-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkBoxContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.checkboxInput {
+    appearance: none; /* 기본 체크박스 스타일 제거 */
+    -webkit-appearance: none; /* WebKit 브라우저 지원 */
+    width: 16px; /* 체크박스 크기 */
+    height: 16px;
+    border: 1px solid #454545; /* 체크박스 테두리 */
+    border-radius: 4px; /* 둥근 모서리 */
+    outline: none;
+    cursor: pointer;
+    background-color: transparent; /* 배경 투명 */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    position: relative; /* ::after 요소 위치 조정 위해 position 설정 */
+}
+
+.checkboxInput:checked {
+    background-color: #454545; /* 체크박스가 선택된 경우 배경 색상 */
+    border-color: #454545; /* 선택된 상태에서 테두리 색상 */
+}
+
+.checkboxInput:checked::after {
+    content: "✓"; /* 체크 표시 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* 부모 요소 기준으로 정렬 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 부모 요소의 크기만큼 확장 */
+    height: 100%;
+    color: white; /* 체크박스 안의 체크 표시 색 */
+    font-size: 12px; /* 체크 표시 크기 */
+    font-weight: bold; /* 체크 표시 두께 */
+    line-height: 1; /* 텍스트 라인 높이 조정 */
+}
+
+.auction-page hr{
+    width: 1000px;
+}
+
+.auctionListContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+    gap: 10px; /* 아이템 간의 간격 */
+    margin-top: 20px;
+    width: 1000px;
+
+}
+
+.auctionItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden; /* 부모 크기를 넘어가는 이미지 숨김 */
+    position: relative;
+}
+
+.auctionItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.auction-link{
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.itemImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    object-fit: cover; /* 이미지가 잘리더라도 컨테이너를 가득 채움 */
+    object-position: center; /* 이미지를 중앙 정렬 */
+    display: block; /* 불필요한 간격 제거 */
+}
+
+.itemTitle{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+
+}
+
+.loadingMessage{
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 200px;
+}
+
+.auctionListMessage{
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 200px;
+}
+
+.pagination {
+    display: flex; /* 버튼들을 가로로 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 5px; /* 버튼 간격 */
+    margin: 20px 0; /* 위아래 여백 */
+}
+
+.pagination button {
+    padding: 8px 12px; /* 버튼 크기 조정 */
+    border: 1px solid #ccc; /* 버튼 테두리 */
+    background-color: white; /* 기본 배경색 */
+    color: #333; /* 텍스트 색상 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    transition: all 0.3s ease; /* 호버 시 애니메이션 효과 */
+}
+
+.pagination button:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 */
+}
+
+.pagination button.active {
+    font-weight: bold; /* 활성화된 버튼 강조 */
+    color: white; /* 텍스트 색상 변경 */
+    background-color: #454545; /* 활성화된 버튼 배경색 */
+}
+
+.pagination button:disabled {
+    background-color: #e9ecef; /* 비활성화 버튼 배경색 */
+    color: #999; /* 비활성화 버튼 텍스트 색상 */
+    cursor: not-allowed; /* 비활성화 상태 커서 */
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        flex-wrap: wrap; /* 작은 화면에서 버튼이 줄바꿈되도록 설정 */
+    }
+}
+
+.pagination button:hover:not(:disabled),
+.pagination button:focus:not(:disabled) {
+    background-color: #f0f0f0; /* 버튼 호버 색상 */
+    outline: none; /* 포커스 아웃라인 제거 */
+}
