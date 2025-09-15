@@ -7,7 +7,7 @@
     </script>
 </c:if>
 
-<link rel="stylesheet" href="/css/Login.css">
+<link rel="stylesheet" href="<c:url value="../../../../resources/static/css/Login.css"/>">
 
 <div class="login-form">
     <div class="login-div">
