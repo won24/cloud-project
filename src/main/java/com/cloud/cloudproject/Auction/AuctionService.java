@@ -2,90 +2,96 @@ package com.cloud.cloudproject.Auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class AuctionService {
 
-    private final AuctionDAO auctionDAO;
+    private final AuctionRepository auctionRepository;
 
     @Autowired
-    public AuctionService(AuctionDAO auctionDAO) {
-        this.auctionDAO = auctionDAO;
+    public AuctionService(AuctionRepository auctionRepository) {
+        this.auctionRepository = auctionRepository;
     }
 
 
     public List<AuctionDTO> getAllList() {
-        return auctionDAO.selectAllAuction();
+        return auctionRepository.findByUsePostTrue();
     }
 
     public List<AuctionDTO> getAntiqueList() {
-        return auctionDAO.antiqueList();
+        return auctionRepository.findByCategoryCodeAndUsePostTrue("a");
     }
 
     public List<AuctionDTO> getLimitedList() {
-        return auctionDAO.limitedList();
+        return auctionRepository.findByCategoryCodeAndUsePostTrue("l");
     }
 
     public List<AuctionDTO> getDiscontinuationList() {
-        return auctionDAO.discontinuationList();
+        return auctionRepository.findByCategoryCodeAndUsePostTrue("d");
     }
 
     public List<AuctionDTO> getArtProductList() {
-        return auctionDAO.artProductList();
+        return auctionRepository.findByCategoryCodeAndUsePostTrue("ap");
     }
 
     public List<AuctionDTO> getValuablesList() {
-        return auctionDAO.valuablesList();
+        return auctionRepository.findByCategoryCodeAndUsePostTrue("v");
     }
 
 
-    public AuctionDTO detail(int postId) {
-        AuctionDTO auctionDTO = auctionDAO.selectAuctionDetail(postId);
-        return auctionDTO;
+    @Transactional(readOnly = true)
+    public AuctionDTO detail(Long postId) {
+        Optional<AuctionDTO> auction = auctionRepository.findByPostIdAndUsePostTrue(postId);
+        return auction.orElse(null);
     }
 
-    public List<AuctionDTO> searchItems(String q, String categoryCode) {
-        return auctionDAO.selectSearchItems(q, categoryCode);
+    @Transactional(readOnly = true)
+    public List<AuctionDTO> searchItems(String keyword, String categoryCode) {
+        return auctionRepository.findByTitleContainingAndCategoryCode(keyword, categoryCode);
     }
 
-    public List<AuctionDTO> searchItemAllCategory(String decodedQ) {
-        return auctionDAO.selectSearchItemsAllCategory(decodedQ);
+    @Transactional(readOnly = true)
+    public List<AuctionDTO> searchItemAllCategory(String keyword) {
+        return auctionRepository.findByTitleContainingAndUsePostTrue(keyword);
     }
 
-
-    public int update(AuctionDTO auctionDTO) {
-        int result = auctionDAO.update(auctionDTO);
-        return result;
+    public AuctionDTO update(AuctionDTO auction) {
+        return auctionRepository.save(auction);
     }
 
-    public int notUsePost(int postId) {
-        int result = auctionDAO.notUsePost(postId);
-        return result;
+    public boolean notUsePost(Long postId) {
+        int result = auctionRepository.softDeleteByPostId(postId);
+        return result > 0;
     }
 
-    public int approval(int postId) {
-        int result = auctionDAO.approval(postId);
-        return result;
+    public boolean approval(Long postId) {
+        int result = auctionRepository.approveAuction(postId);
+        return result > 0;
     }
 
+    @Transactional(readOnly = true)
     public List<AuctionDTO> getLiveList() {
-        return auctionDAO.getLiveList();
+        return auctionRepository.findLiveAuctions();
     }
 
-    public int setPostStatus(int postId) {
-        int result = auctionDAO.setPostStatus(postId);
-        return result;
+    public boolean setPostStatus(Long postId) {
+        int result = auctionRepository.endLiveAuction(postId);
+        return result > 0;
     }
 
-    public int updateLivePost(int postId) {
-        int result = auctionDAO.updateLivePost(postId);
-        return result;
+    public boolean updateLivePost(Long postId) {
+        int result = auctionRepository.startLiveAuction(postId);
+        return result > 0;
     }
 
-    public int updatePostAfterLive(AuctionDTO auctionDTO) {
-        int result = auctionDAO.updatePostAfterLive(auctionDTO);
-        return result;
+    public boolean updatePostAfterLive(Long postId, Integer finalCash, LocalDateTime endDay) {
+        int result = auctionRepository.updateAuctionAfterLive(postId, finalCash, endDay);
+        return result > 0;
     }
 }

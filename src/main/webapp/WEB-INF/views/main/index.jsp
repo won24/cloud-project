@@ -6,13 +6,13 @@
         <!-- 메인 페이지 중앙 왼쪽 슬라이드 리스트 -->
         <div class="slideList">
             <a href="/auction/5" class="list">
-                <img class="listImg" src="../../../../resources/static/images/롤렉스.png" alt="롤렉스"/>
+                <img class="listImg" src="${pageContext.request.contextPath}/resources/images/롤렉스.png" alt="롤렉스"/>
             </a>
             <a href="/auction/3" class="list">
-                <img class="listImg" src="../../../../resources/static/images/아이팟.png" alt="아이팟"/>
+                <img class="listImg" src="${pageContext.request.contextPath}/resources/images/아이팟.png" alt="아이팟"/>
             </a>
             <a href="/auction/55" class="list">
-                <img class="listImg" src="../../../../resources/static/images/아디다스.png" alt="아디다스"/>
+                <img class="listImg" src="${pageContext.request.contextPath}/resources/images/아디다스.png" alt="아디다스"/>
             </a>
         </div>
 
@@ -21,19 +21,19 @@
             <div class="sliders" id="slideContainer">
                 <div class="slider">
                     <a href="/auction/5">
-                        <img src="../../../../resources/static/images/슬라이드1.png" alt="슬라이드 1"/>
+                        <img src="${pageContext.request.contextPath}/resources/images/슬라이드1.png" alt="슬라이드 1"/>
                         <button class="slide-btn">보러가기</button>
                     </a>
                 </div>
                 <div class="slider">
                     <a href="/auction/3">
-                        <img src="../../../../resources/static/images/슬라이드2.png" alt="슬라이드 2"/>
+                        <img src="${pageContext.request.contextPath}/resources/images/슬라이드2.png" alt="슬라이드 2"/>
                         <button class="slide-btn">보러가기</button>
                     </a>
                 </div>
                 <div class="slider">
                     <a href="/auction/55">
-                        <img src="../../../../resources/static/images/슬라이드3.png" alt="슬라이드 3"/>
+                        <img src="${pageContext.request.contextPath}/resources/images/슬라이드3.png" alt="슬라이드 3"/>
                         <button class="slide-btn">보러가기</button>
                     </a>
                 </div>
