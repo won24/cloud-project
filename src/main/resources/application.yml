@@ -23,20 +23,27 @@ spring:
   
   # 기존 데이터베이스 설정 유지
   datasource:
-    url: jdbc:mysql://112.221.66.174:3306/bidonDB
-    username: bidon
-    password: bidon
+    url: jdbc:mysql://3.39.50.163:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: powermvp
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   # 기존 JPA 설정 유지
+#  jpa:
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
   jpa:
     hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update   # 스키마 자동변경 설정. 실운영시에는 validate 추천
+    show-sql: true        # SQL 쿼리를 로그에 보여줌
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
   # 기존 Jackson 설정 유지
   jackson:
