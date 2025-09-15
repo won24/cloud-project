@@ -1,5 +1,10 @@
 package com.cloud.cloudproject.RequestItem;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ImageDTO {
 
     private int postId;
@@ -11,22 +16,6 @@ public class ImageDTO {
 
     public ImageDTO(int postId, String imageUrl) {
         this.postId = postId;
-        this.imageUrl = imageUrl;
-    }
-
-    public int getPostId() {
-        return postId;
-    }
-
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
