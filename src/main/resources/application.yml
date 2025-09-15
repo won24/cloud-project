@@ -8,24 +8,21 @@ server:
         development: true  # JSP 개발 모드
 
 spring:
-  # JSP 뷰 리졸버 설정 추가
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-  
-  # 정적 리소스 설정 추가  
+
   web:
     resources:
       static-locations: classpath:/static/
       cache:
         period: 0  # 개발 시 캐시 비활성화
-  
-  # 기존 데이터베이스 설정 유지
+
   datasource:
-    url: jdbc:mysql://3.39.50.163:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: admin
-    password: powermvp
+    url: jdbc:mysql://localhost:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   # 기존 JPA 설정 유지
@@ -45,17 +42,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
-  # 기존 Jackson 설정 유지
   jackson:
     time-zone: Asia/Seoul
     date-format: yyyy-MM-dd HH:mm:ss
 
-# 기존 MyBatis 설정 유지 (필요시)
-mybatis:
-  mapper-locations: mapper/*.xml
 
 
-# 기존 파일 업로드 설정 유지
 file:
   upload-dir: "C:\\20240801-gangnam\\Project\\img"  # Windows 경로 수정
   base-url: "http://112.221.66.174:8080/images/"
