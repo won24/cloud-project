@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-@Data  // getter/setter 자동 생성
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
