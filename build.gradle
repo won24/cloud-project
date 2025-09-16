@@ -43,5 +43,7 @@ tasks.named('test') {
 }
 
 bootJar {
-    layered()
+    layered {
+        enabled = true
+    }
 }
