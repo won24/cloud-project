@@ -12,23 +12,23 @@ spec:
       labels:
         app: springboot-app
     spec:
-      # Init Container로 DB 연결 대기
+      nodeSelector:
+        role: workers
       initContainers:
         - name: wait-for-db
-          image: busybox:1.35
+          image: busybox:1.28
           command: ['sh', '-c']
           args:
             - |
-              echo "Waiting for MySQL..."
+              echo "Checking MySQL connectivity..."
               until nc -z 3.39.50.163 3306; do
                 echo "MySQL not ready, waiting..."
                 sleep 2
               done
               echo "MySQL is ready!"
-
       containers:
         - name: springboot-app
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/springboot-app:latest
+          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.0
           ports:
             - containerPort: 8080
           env:
