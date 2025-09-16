@@ -20,9 +20,9 @@ spring:
         period: 0  # 개발 시 캐시 비활성화
 
   datasource:
-    url: jdbc:mysql://localhost:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: root
+    url: jdbc:mysql://3.39.50.163:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   # 기존 JPA 설정 유지
