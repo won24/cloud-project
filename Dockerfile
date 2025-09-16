@@ -6,7 +6,7 @@ COPY . .
 RUN gradle bootJar -x test
 
 # Step 2: Runtime Stage
-FROM openjdk:17-jre-alpine AS runtime
+FROM eclipse-temurin:17-jre-alpine AS runtime
 
 # 보안 및 성능 최적화
 RUN adduser -D -s /bin/sh springboot && \
