@@ -58,11 +58,10 @@ spring:
     time-zone: Asia/Seoul
     date-format: yyyy-MM-dd HH:mm:ss
 
-
-
+# 파일 업로드 경로를 Linux 경로로 변경
 file:
-  upload-dir: "C:\\20240801-gangnam\\Project\\img"  # Windows 경로 수정
-  base-url: "http://112.221.66.174:8080/images/"
+  upload-dir: "/tmp/uploads"
+  base-url: "http://localhost:8080/images/"
 
 # 로깅 설정 (JSP 개발 시 유용)
 logging:

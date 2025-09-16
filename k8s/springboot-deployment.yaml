@@ -14,18 +14,6 @@ spec:
     spec:
       nodeSelector:
         role: workers
-      initContainers:
-        - name: wait-for-db
-          image: busybox:1.28
-          command: ['sh', '-c']
-          args:
-            - |
-              echo "Checking MySQL connectivity..."
-              until nc -z 3.39.50.163 3306; do
-                echo "MySQL not ready, waiting..."
-                sleep 2
-              done
-              echo "MySQL is ready!"
       containers:
         - name: springboot-app
           image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.0
