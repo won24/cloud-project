@@ -1,7 +1,8 @@
-FROM nginx:1.27-alpine  # 최신 버전 사용
+ # 최신 버전 사용
+FROM nginx:1.27-alpine
 
 # 패키지 설치
-RUN apk add --no-cache curl tzdata dnsutils && \
+RUN apk add --no-cache curl tzdata bind-tools && \
     rm -rf /var/cache/apk/*
 
 # 기본 설정 파일 제거

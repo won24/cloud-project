@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<link rel="stylesheet" href="/css/Footer.css">
 
 <footer class="footer-container">
     <div class="footer-a">
