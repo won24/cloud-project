@@ -20,7 +20,8 @@ spring:
         period: 0  # 개발 시 캐시 비활성화
 
   datasource:
-    url: ${DB_URL:jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+#    url: ${DB_URL:jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    url: ${DB_URL:jdbc:mysql://mysql-service:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -63,11 +64,18 @@ file:
   upload-dir: "/tmp/uploads"
   base-url: "http://localhost:8080/images/"
 
-# 로깅 설정 (JSP 개발 시 유용)
+# 로깅 설정 강화
 logging:
   level:
-    com.cloud.auction_back: DEBUG
-    org.springframework.web: INFO
+    root: INFO
+    com.cloud.cloudproject: DEBUG
+    org.springframework.boot: INFO
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: /usr/local/tomcat/logs/spring-boot.log
 
 
 management:
