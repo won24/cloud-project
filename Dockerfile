@@ -20,10 +20,10 @@ RUN gradle clean bootWar -x test --no-daemon
 RUN ls -la /app/build/libs/
 
 # Step 2: Runtime Stage - JRE 사용으로 크기 최적화
-FROM tomcat:10.1-jre17-alpine AS runtime
+FROM tomcat:10.1-jre17 AS runtime
 
 # 필요한 패키지 설치 (curl for healthcheck, tzdata for timezone)
-RUN apk add --no-cache curl tzdata
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # 타임존 설정
 ENV TZ=Asia/Seoul
