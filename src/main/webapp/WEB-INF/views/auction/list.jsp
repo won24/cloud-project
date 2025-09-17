@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
-<link rel="stylesheet" href="<c:url value="../../../../resources/static/css/Auction.css"/>">
-
+<link rel="stylesheet" href="css/Aucion.css">
 <div class="auction-page">
     <h1 class="auctionTitle">
         <c:choose>

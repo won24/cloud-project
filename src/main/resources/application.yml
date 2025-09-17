@@ -6,6 +6,7 @@ server:
     jsp:
       init-parameters:
         development: true  # JSP 개발 모드
+  forward-headers-strategy: native # 프록시 헤더 처리
 
 spring:
   mvc:
@@ -36,15 +37,6 @@ spring:
       validation-timeout: 5000
       leak-detection-threshold: 60000
 
-  # 기존 JPA 설정
-#  jpa:
-#    hibernate:
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
   jpa:
     hibernate:
       ddl-auto: create  # 스키마 자동변경 설정. 개발시에는 update 추천
