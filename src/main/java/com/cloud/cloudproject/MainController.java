@@ -1,4 +1,4 @@
-package com.cloud.cloudproject.MainPage;
+package com.cloud.cloudproject;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
