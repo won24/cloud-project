@@ -20,7 +20,7 @@ spring:
         period: 0  # 개발 시 캐시 비활성화
 
   datasource:
-    url: ${DB_URL:jdbc:mysql://3.39.50.163:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    url: ${DB_URL:jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -46,7 +46,7 @@ spring:
 #        format_sql: true
   jpa:
     hibernate:
-      ddl-auto: validate  # 스키마 자동변경 설정. 개발시에는 update 추천
+      ddl-auto: create  # 스키마 자동변경 설정. 개발시에는 update 추천
     show-sql: false        # 개발시에는 true : SQL 쿼리를 로그에 보여줌
     properties:
       hibernate:

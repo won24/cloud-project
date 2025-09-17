@@ -1,4 +1,4 @@
-package com.cloud.cloudproject.MainPage;
+package com.cloud.cloudproject;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
+//    @RequestMapping("/")
+//    public String index(Model model) {
+//        model.addAttribute("title", "비드온 - 경매사이트");
+//        model.addAttribute("contentPage", "../main/index.jsp");
+//        return "common/layout";
+//    }
+
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("title", "비드온 - 경매사이트");
-        model.addAttribute("contentPage", "../main/index.jsp");
-        return "common/layout";
+        return "main/index";
     }
 
     @RequestMapping("/terms")
