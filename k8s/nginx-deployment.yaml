@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nginx-server
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/nginx-server:latest
+          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon-nginx:v1.0
           ports:
             - containerPort: 80
           resources:
