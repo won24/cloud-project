@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-server
@@ -12,27 +12,35 @@ spec:
       labels:
         app: nginx-server
     spec:
+      # 초기화 컨테이너로 Spring Boot 서비스 대기
+      initContainers:
+        - name: wait-for-springboot
+          image: busybox:1.35
+          command: ['sh', '-c']
+          args:
+            - |
+              until nslookup springboot-service.default.svc.cluster.local; do
+                echo "Waiting for springboot-service..."
+                sleep 2
+              done
+              echo "springboot-service is available"
       containers:
-        - name: nginx-server
-          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon-nginx:v1.0
+        - name: nginx
+          image: your-registry/nginx-custom:latest  # 커스텀 이미지
           ports:
             - containerPort: 80
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "100m"
-            limits:
-              memory: "128Mi"
-              cpu: "200m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: nginx-server
-  ports:
-    - port: 80
-      targetPort: 80
-  type: LoadBalancer  # 외부 접근용
+          # 헬스체크 개선
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3

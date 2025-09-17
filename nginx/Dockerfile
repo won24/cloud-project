@@ -1,13 +1,13 @@
-FROM nginx:1.25-alpine
+FROM nginx:1.27-alpine  # 최신 버전 사용
 
-# 불필요한 패키지 제거 및 필요 패키지 설치
-RUN apk add --no-cache curl tzdata && \
+# 패키지 설치
+RUN apk add --no-cache curl tzdata dnsutils && \
     rm -rf /var/cache/apk/*
 
 # 기본 설정 파일 제거
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Nginx 설정 복사
+# 설정 파일 복사
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/
 
@@ -18,11 +18,10 @@ RUN mkdir -p /var/log/nginx && \
 # 시간대 설정
 ENV TZ=Asia/Seoul
 
-# 포트 노출
 EXPOSE 80
 
-# 헬스체크
-HEALTHCHECK --interval=30s --timeout=5s \
-    CMD curl -f http://localhost/health || exit 1
+# 헬스체크 개선 (DNS 해결 테스트 포함)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost/health && nslookup springboot-service || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]
