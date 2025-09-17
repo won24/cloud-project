@@ -16,13 +16,12 @@ spec:
         role: workers
       containers:
         - name: springboot-app
-          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.8
+          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.3
           ports:
             - containerPort: 8080
           env:
             - name: DB_URL
-#              value: "jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
-              value: "jdbc:mysql://mysql-service:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
+              value: "jdbc:mysql://mydb.c5kkayiuwy6p.ap-northeast-2.rds.amazonaws.com:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
             - name: DB_USERNAME
               value: "admin"
             - name: DB_PASSWORD
