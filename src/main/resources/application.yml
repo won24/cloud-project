@@ -20,7 +20,8 @@ spring:
         period: 0  # 개발 시 캐시 비활성화
 
   datasource:
-    url: ${DB_URL:jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+#    url: ${DB_URL:jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    url: ${DB_URL:jdbc:mysql://mysql-service:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver

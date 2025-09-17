@@ -21,7 +21,8 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_URL
-              value: "jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
+#              value: "jdbc:mysql://10.250.4.245:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
+              value: "jdbc:mysql://mysql-service:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
             - name: DB_USERNAME
               value: "admin"
             - name: DB_PASSWORD
