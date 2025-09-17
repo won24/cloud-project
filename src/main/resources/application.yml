@@ -64,11 +64,18 @@ file:
   upload-dir: "/tmp/uploads"
   base-url: "http://localhost:8080/images/"
 
-# 로깅 설정 (JSP 개발 시 유용)
+# 로깅 설정 강화
 logging:
   level:
-    com.cloud.auction_back: DEBUG
-    org.springframework.web: INFO
+    root: INFO
+    com.cloud.cloudproject: DEBUG
+    org.springframework.boot: INFO
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: /usr/local/tomcat/logs/spring-boot.log
 
 
 management:

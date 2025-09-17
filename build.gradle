@@ -11,6 +11,7 @@ bootJar {
 }
 war {
     enabled = true
+    archiveFileName = 'ROOT.war'
 }
 
 group = 'com.cloud'
@@ -29,6 +30,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
     implementation 'org.projectlombok:lombok'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'

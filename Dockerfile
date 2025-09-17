@@ -6,24 +6,20 @@ COPY build.gradle settings.gradle ./
 COPY gradle/ gradle/
 RUN gradle dependencies --no-daemon
 COPY . .
-RUN gradle bootWar -x test --no-daemon
+RUN gradle clean bootWar -x test --no-daemon  # bootWar 사용
 
 # Step 2: Runtime Stage
-FROM tomcat:10.1-jdk17-alpine AS runtime
+FROM tomcat:10.1-jdk17 AS runtime
 
 # 기본 ROOT 앱 삭제
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
 # WAR 파일 복사
-COPY --from=builder /app/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
-# 보안 설정
-RUN addgroup -g 1001 -S tomcat && \
-    adduser -u 1001 -S tomcat -G tomcat && \
-    chown -R tomcat:tomcat /usr/local/tomcat
-USER tomcat
-
+# 타임존 설정
 ENV TZ=Asia/Seoul
+
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
