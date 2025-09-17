@@ -68,3 +68,26 @@ logging:
   level:
     com.cloud.auction_back: DEBUG
     org.springframework.web: INFO
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+    access:
+      default: read-only     # 기본 액세스 레벨
+  endpoint:
+    health:
+      access: unrestricted   # health 엔드포인트만 무제한 액세스
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+    db:
+      enabled: true
