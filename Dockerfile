@@ -40,9 +40,6 @@ COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 # JSP 컴파일을 위한 추가 설정
 ENV CATALINA_OPTS="-Djava.awt.headless=true -Dfile.encoding=UTF-8"
 
-# 기존 tomcat 사용자 사용 (새로 생성하지 않음)
-USER tomcat
-
 EXPOSE 8080
 
 # 헬스체크 추가
