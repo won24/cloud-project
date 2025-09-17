@@ -16,7 +16,7 @@ spec:
         role: workers
       containers:
         - name: springboot-app
-          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v2.0
+          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.0
           ports:
             - containerPort: 8080
           env:
