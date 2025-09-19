@@ -5,7 +5,7 @@ metadata:
   # Argo CD UI에 표시될 애플리케이션 이름
   name: cloud-project-argoCD
   # Argo CD가 설치된 네임스페이스
-  namespace: argoCD
+  namespace: argocd
 spec:
   project: default
   source:
@@ -27,3 +27,5 @@ spec:
       selfHeal: true # 클러스터 상태가 Git과 다르면 자동으로 Git 상태로 복구
     syncOptions:
       - CreateNamespace=true # 'bidon-proj-ns' 네임스페이스가 없으면 자동 생성
+      - PrunePropagationPolicy=foreground  # 삭제 순서 제어
+      - PruneLast=true                     # 다른 리소스 후 삭제
