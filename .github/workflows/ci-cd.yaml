@@ -83,7 +83,7 @@ jobs:
           cache-from: type=gha  # ← 추가
           cache-to: type=gha,mode=max  # ← 추가
           tags: |
-            ${{ secrets.ECR_REGISTRY }}/bidon/nginx:${{ steps.generate_tag.outputs.tag }}
+            ${{ secrets.ECR_REGISTRY }}/bidon/nginx/${{ steps.generate_tag.outputs.tag }}
   # 두 번째 잡: Kubernetes Manifest 리포지토리의 YAML 파일을 업데이트하는 역할
   update-manifest:
     # 'build-and-push-images' 잡이 성공적으로 끝나야만 이 잡이 시작됩니다.
