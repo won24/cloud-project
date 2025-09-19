@@ -1,0 +1,122 @@
+# 워크플로우의 이름. GitHub Actions 탭에 이 이름으로 표시됩니다.
+name: CI/CD for cloud-project
+
+# 이 워크플로우가 언제 실행될지를 정의하는 트리거(Trigger) 설정입니다.
+on:
+  push:
+    # 'main' 브랜치에 코드가 푸시(push)될 때마다 실행됩니다.
+    branches: [ "main" ]
+
+# 동시성 제어 추가
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# 워크플로우를 구성하는 작업(Job)들의 목록입니다.
+jobs:
+  # 첫 번째 잡: Docker 이미지를 빌드하고 레지스트리에 푸시하는 역할
+  build-and-push-images:
+    # 이 잡이 실행될 가상 환경을 지정합니다. (최신 Ubuntu)
+    runs-on: ubuntu-latest
+    # 이 잡에서 사용하는 GITHUB_TOKEN에 필요한 최소한의 권한을 부여합니다. (보안 강화)
+    permissions:
+      contents: read   # 소스 코드 체크아웃을 위한 읽기 권한
+      packages: write  # GitHub Container Registry 사용 시 필요한 쓰기 권한 (현재는 미사용)
+
+    # 이 잡의 결과를 다른 잡에서 사용할 수 있도록 '출력(output)'을 정의합니다.
+    # 'image_tag'라는 이름의 출력을 선언합니다.
+    outputs:
+      image_tag: ${{ steps.generate_tag.outputs.tag }}
+
+    # 잡 내부에서 순차적으로 실행될 단계(Step)들입니다.
+    steps:
+      # 1. Git 리포지토리의 소스 코드를 워크플로우 실행 환경으로 내려받습니다.
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # 2. GitHub Secrets에 저장된 AWS 자격 증명을 사용하여 AWS CLI를 설정합니다.
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+
+      # 3. Amazon ECR(Elastic Container Registry)에 로그인합니다.
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          mask-password: 'true'
+
+
+      # 4. Git 커밋 해시(SHA)의 앞 7자리를 이용해 고유한 이미지 태그를 생성합니다. (예: a1b2c3d)
+      #    - 'id'를 부여하여 이 단계의 출력을 다른 단계에서 참조할 수 있게 합니다.
+      #    - 'GITHUB_OUTPUT'에 결과를 저장하여 이 잡의 'outputs'으로 전달합니다.
+      - name: Generate image tag
+        id: generate_tag
+        run: echo "tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      # 5. Dockerfile을 사용하여 Spring Boot 애플리케이션 이미지를 빌드하고,
+      #    생성된 태그를 붙여 ECR에 푸시합니다.
+      - name: Build and push Spring Boot image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: |
+            ${{ secrets.ECR_REGISTRY }}/bidon/spring:${{ steps.generate_tag.outputs.tag }}
+
+      # 6. Dockerfile을 사용하여 프록시 이미지를 빌드하고,
+      #    생성된 태그를 붙여 ECR에 모두 푸시합니다.
+      - name: Build and push Nginx image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./nginx/Dockerfile
+          push: true
+          cache-from: type=gha  # ← 추가
+          cache-to: type=gha,mode=max  # ← 추가
+          tags: |
+            ${{ secrets.ECR_REGISTRY }}/bidon/nginx:${{ steps.generate_tag.outputs.tag }}
+  # 두 번째 잡: Kubernetes Manifest 리포지토리의 YAML 파일을 업데이트하는 역할
+  update-manifest:
+    # 'build-and-push-images' 잡이 성공적으로 끝나야만 이 잡이 시작됩니다.
+    needs: build-and-push-images
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 배포 설정을 담고 있는 별도의 Manifest 리포지토리를 체크아웃합니다.
+      #    - 'repository'에 Manifest 리포지토리 주소를 명시합니다.
+      #    - 'token'에 해당 리포지토리에 쓰기 권한이 있는 PAT를 사용합니다.
+      - name: Checkout manifest repository
+        uses: actions/checkout@v4
+        with:
+          repository: won24/cloud-project-manifests
+          token: ${{ secrets.PAT }}
+
+      # 2. 이전 잡('build-and-push-images')의 출력('image_tag')을 직접 참조하여,
+      #    sed 명령어로 Kubernetes Deployment YAML 파일 내의 이미지 태그를 새 버전으로 교체합니다.
+      #    이미지의 이름은 본인의 이미지 이름으로 변경해야 합니다.
+      - name: Update deployment files
+        run: |
+          IMAGE_TAG=${{ needs.build-and-push-images.outputs.image_tag }}
+          sed -i 's|image: ${{ secrets.ECR_REGISTRY }}/bidon/spring:.*|image: ${{ secrets.ECR_REGISTRY }}/bidon/spring:'$IMAGE_TAG'|g' k8s/springboot-deployment.yaml
+          sed -i 's|image: ${{ secrets.ECR_REGISTRY }}/bidon/nginx:.*|image: ${{ secrets.ECR_REGISTRY }}/bidon/nginx:'$IMAGE_TAG'|g' k8s/nginx-deployment.yaml
+
+      # 3. YAML 파일의 변경사항을 Manifest 리포지토리에 커밋하고 푸시합니다.
+      #    - 'github-actions[bot]' 이름으로 커밋됩니다.
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Update image tag to ${{ needs.build-and-push-images.outputs.image_tag }}"
+            git push
+          else
+            echo "No changes to commit."
+          fi
