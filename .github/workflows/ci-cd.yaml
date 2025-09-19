@@ -77,7 +77,7 @@ jobs:
       - name: Build and push Nginx image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./nginx
           file: ./nginx/Dockerfile
           push: true
           cache-from: type=gha  # ← 추가
