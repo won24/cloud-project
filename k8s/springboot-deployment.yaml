@@ -1,27 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-app
+  name: bidonproject-springboot
+  namespace: bidon-proj-ns
+  labels:
+    type: bidonproject-springboot
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: springboot-app
+      app: bidonproject-springboot
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: bidonproject-springboot
     spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: bidonproject-springboot
       nodeSelector:
         role: workers
       containers:
-        - name: springboot-app
-          image: 738404842710.dkr.ecr.ap-northeast-2.amazonaws.com/bidon:v1.3
+        - name: bidonproject-springboot
+          image: 679835924866.dkr.ecr.ap-northeast-2.amazonaws.com/bidon/spring:v1.4
           ports:
             - containerPort: 8080
           env:
             - name: DB_URL
-              value: "jdbc:mysql://mydb.c5kkayiuwy6p.ap-northeast-2.rds.amazonaws.com:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
+              value: "jdbc:mysql://bod-db-at.cpe0ugu20lct.ap-northeast-2.rds.amazonaws.com:3306/bidon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
             - name: DB_USERNAME
               value: "admin"
             - name: DB_PASSWORD
@@ -33,8 +43,8 @@ spec:
               value: "production"
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "250m"
+              memory: "512Mi"
+              cpu: "500m"
             limits:
               memory: "512Mi"
               cpu: "500m"
@@ -59,10 +69,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-service
+  name: bidonproject-springboot-service
+  namespace: bidon-proj-ns
 spec:
   selector:
-    app: springboot-app
+    app: bidonproject-springboot
   ports:
     - port: 8080
       targetPort: 8080
