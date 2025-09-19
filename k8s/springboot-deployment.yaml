@@ -26,7 +26,7 @@ spec:
         role: workers
       containers:
         - name: bidonproject-springboot
-          image: 679835924866.dkr.ecr.ap-northeast-2.amazonaws.com/bidon/spring:v1.4
+          image: 679835924866.dkr.ecr.ap-northeast-2.amazonaws.com/bidon/spring:v1.0
           ports:
             - containerPort: 8080
           env:

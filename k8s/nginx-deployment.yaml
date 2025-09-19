@@ -34,7 +34,7 @@ spec:
               echo "springboot-service is available"
       containers:
         - name: nginx
-          image: 679835924866.dkr.ecr.ap-northeast-2.amazonaws.com/bidon/nginx:v1.1
+          image: 679835924866.dkr.ecr.ap-northeast-2.amazonaws.com/bidon/nginx:v1.0
           ports:
             - containerPort: 80
           # 헬스체크 개선
@@ -79,7 +79,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:679835924866:certificate/8eb468f1-e955-42cf-9e6e-1799a85b5da6
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:679835924866:certificate/c2b1c53a-722f-434d-87d8-96d7b923e8a7
 spec:
   ingressClassName: alb
   rules:
