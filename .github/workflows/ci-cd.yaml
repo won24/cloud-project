@@ -42,6 +42,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       # 3. Amazon ECR(Elastic Container Registry)에 로그인합니다.
       - name: Login to Amazon ECR
