@@ -23,7 +23,7 @@ ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # tomcat 사용자 확인 및 권한 설정
-RUN id tomcat || useradd -r -u 1000 tomcat
+RUN id tomcat || useradd -r -u 1001 tomcat
 RUN chown -R tomcat:tomcat /usr/local/tomcat
 RUN chmod -R 755 /usr/local/tomcat
 
