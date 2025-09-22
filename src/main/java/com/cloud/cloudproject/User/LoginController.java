@@ -128,7 +128,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/member/signup")
+    @GetMapping("/signup")
     public String signupView() {
         return "signup/signup"; // WEB-INF/views/signup/signup.jsp 반환
     }
