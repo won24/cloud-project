@@ -21,6 +21,6 @@
 
 <%@ include file="footer.jsp" %>
 
-<script src="/js/common.js"></script>
+<%--<script src="/js/common.js"></script>--%>
 </body>
 </html>

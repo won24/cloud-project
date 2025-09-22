@@ -7,10 +7,10 @@
 <div class="navContainer">
     <a href="/" class="logo"></a>
     <div class="menuContainer">
-        <a href="/live" class="nav-link">라이브</a>
-        <a href="/auction" class="nav-link">경매품</a>
-        <a href="/requestitem" class="nav-link">경매품신청</a>
-        <a href="/customer/faq" class="nav-link">고객센터</a>
+        <a href="<c:url value="/auction/live"/>" class="nav-link">라이브</a>
+        <a href="<c:url value="/auction"/>" class="nav-link">경매품</a>
+        <a href="<c:url value="/requestitem"/>" class="nav-link">경매품신청</a>
+        <a href="<c:url value="/customer/faq"/>" class="nav-link">고객센터</a>
 
         <c:choose>
             <c:when test="${sessionScope.isLoggedIn == true && sessionScope.isAdmin == true}">
