@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="css/Aucion.css">
+<link rel="stylesheet" href="<c:url value="/resources/static/css/Auction.css"/>">
 <div class="auction-page">
     <h1 class="auctionTitle">
         <c:choose>

@@ -7,7 +7,7 @@
     <c:choose>
         <c:when test="${auction.postStatus == 'on'}">
 <%--            <!-- 라이브 경매 중 -->--%>
-<%--            <jsp:include page="../live/LiveDetail.jsp" />--%>
+<%--            <jsp:include page="../auction/LiveDetail.jsp" />--%>
         </c:when>
         <c:otherwise>
             <!-- 일반 상세 페이지 -->
