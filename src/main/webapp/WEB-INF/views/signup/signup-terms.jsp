@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/signup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css">
 
 <div class="terms-container">
   <h3>이용약관 및 개인정보처리방침</h3>

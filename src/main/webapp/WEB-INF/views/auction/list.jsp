@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="<c:url value="/resources/static/css/Auction.css"/>">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/AcutionDetail.css">
 <div class="auction-page">
     <h1 class="auctionTitle">
         <c:choose>

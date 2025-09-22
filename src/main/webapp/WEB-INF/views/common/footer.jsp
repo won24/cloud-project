@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link rel="stylesheet" href="/css/Footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Footer.css">
 
 <footer class="footer-container">
     <div class="footer-a">
