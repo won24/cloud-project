@@ -8,7 +8,7 @@
     </script>
 </c:if>
 
-<link rel="stylesheet" href="/css/RequestItem.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/RequestItem.css">
 
 <div class="requestitem-container">
     <h1>경매품 신청하기</h1>

@@ -1,14 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="/css/Login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Login.css">
 
 <c:if test="${sessionScope.isLoggedIn == true}">
     <script>
         history.back();
     </script>
 </c:if>
-
-<link rel="stylesheet" href="<c:url value="../../../../resources/static/css/Login.css"/>">
 
 <div class="login-form">
     <div class="login-div">

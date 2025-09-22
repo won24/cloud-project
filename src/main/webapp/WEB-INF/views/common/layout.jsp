@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title != null ? title : '비드온 - 경매사이트'}</title>
-    <link rel="stylesheet" href="/css/NavigationBar.css">
-    <link rel="stylesheet" href="/css/Footer.css">
-    <link rel="stylesheet" href="/css/Main.css">
-    <link rel="stylesheet" href="/css/MyPageLayout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/NavigationBar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/MyPageLayout.css">
+
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
 </head>
 <body>
