@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="css/AucionDetail.css">
+<link rel="stylesheet" href="<c:url value="/resources/static/css/AcutionDetail.css"/>">
 <div class="detail-page" id="auctionDetail">
     <c:choose>
         <c:when test="${auction.postStatus == 'on'}">
