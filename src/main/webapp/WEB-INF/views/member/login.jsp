@@ -16,7 +16,7 @@
         <hr class="line" />
         <span class="message">로그인 후 이용해주세요.</span>
 
-        <form class="login-group" id="loginForm" action="/member/login" method="post">
+        <form class="login-group" id="loginForm" action="<c:url value="/member/login"/>" method="post">
             <div class="item">
                 <div class="inputs-wrapper">
                     <input

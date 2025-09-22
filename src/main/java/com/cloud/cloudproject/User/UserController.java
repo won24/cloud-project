@@ -11,7 +11,7 @@ import java.util.Optional;
 public class UserController
 {
     @Autowired
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
     private final UserService userService;
 
