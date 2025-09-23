@@ -33,8 +33,7 @@ public class RequestItemController {
         }
 
         model.addAttribute("title", "경매품 신청");
-        model.addAttribute("contentPage", "../requestitem/write.jsp");
-        return "common/layout";
+        return "requestitem/write";
     }
 
     // REST API - Entity 사용
@@ -65,7 +64,7 @@ public class RequestItemController {
     @GetMapping("/success")
     public String successPage(Model model) {
         model.addAttribute("title", "신청 완료");
-        model.addAttribute("contentPage", "../requestitem/success.jsp");
+        model.addAttribute("contentPage", "requestitem/success.jsp");
         return "common/layout";
     }
 

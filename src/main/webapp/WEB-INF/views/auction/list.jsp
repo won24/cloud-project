@@ -17,16 +17,16 @@
 
     <!-- 카테고리 네비게이션 -->
     <div class="auctionCategory">
-        <a href="/auction/antique" class="${categoryCode == 'antique' ? 'active' : ''}">골동품</a>
-        <a href="/auction/limited" class="${categoryCode == 'limited' ? 'active' : ''}">한정판</a>
-        <a href="/auction/discontinuation" class="${categoryCode == 'discontinuation' ? 'active' : ''}">단종품</a>
-        <a href="/auction/artproduct" class="${categoryCode == 'artproduct' ? 'active' : ''}">예술품</a>
-        <a href="/auction/valuables" class="${categoryCode == 'valuables' ? 'active' : ''}">귀중품</a>
+        <a href="<c:url value="/auction/antique"/>" class="${categoryCode == 'antique' ? 'active' : ''}">골동품</a>
+        <a href="<c:url value="/auction/limited"/>" class="${categoryCode == 'limited' ? 'active' : ''}">한정판</a>
+        <a href="<c:url value="/auction/discontinuation"/>" class="${categoryCode == 'discontinuation' ? 'active' : ''}">단종품</a>
+        <a href="<c:url value="/auction/artproduct"/>" class="${categoryCode == 'artproduct' ? 'active' : ''}">예술품</a>
+        <a href="<c:url value="/auction/valuables"/>" class="${categoryCode == 'valuables' ? 'active' : ''}">귀중품</a>
     </div>
 
     <!-- 검색 및 필터 영역 -->
     <div class="search-check">
-        <form action="/auction" method="get" class="auctionSearch">
+        <form action="<c:url value="/auction"/>" method="get" class="auctionSearch">
             <input type="hidden" name="categoryCode" value="${categoryCode}">
             <input type="hidden" name="page" value="1">
             <input

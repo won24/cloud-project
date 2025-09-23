@@ -282,17 +282,16 @@ async function checkIdDuplicate() {
     }
 
     try {
-        const response = await fetch('/api/check-id-duplicate', {
-            method: 'POST',
+        const response = await fetch(`/api/check-id?id=${encodeURIComponent(id)}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: id })
+            }
         });
 
         const result = await response.json();
 
-        if (result.isDuplicate) {
+        if (result) {
             showValidationMessage('id', '이미 사용 중인 아이디입니다.', false);
             validationState.idDuplicateChecked = false;
         } else {
@@ -313,17 +312,16 @@ async function checkNicknameDuplicate() {
     }
 
     try {
-        const response = await fetch('/api/check-nickname-duplicate', {
-            method: 'POST',
+        const response = await fetch(`/api/check-nickname?nickname=${encodeURIComponent(nickname)}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ nickname: nickname })
+            }
         });
 
         const result = await response.json();
 
-        if (result.isDuplicate) {
+        if (result) {
             showValidationMessage('nickname', '이미 사용 중인 닉네임입니다.', false);
             validationState.nicknameDuplicateChecked = false;
         } else {
