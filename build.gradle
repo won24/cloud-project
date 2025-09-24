@@ -48,8 +48,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 //    providedRuntime 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
     providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper') {
         // 불필요 전이 제거 예시
@@ -57,7 +57,6 @@ dependencies {
     }
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
     runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
