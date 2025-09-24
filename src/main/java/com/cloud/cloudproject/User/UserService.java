@@ -26,28 +26,28 @@ public class UserService
         return userRepository.existsById(id);
     }
 
-    public void registerUser(SignupRequest signupRequest)
-    {
-        UserDTO user = new UserDTO();
-        user.setId(signupRequest.getId());
-        user.setPassword(signupRequest.getPassword());
-        user.setName(signupRequest.getName());
-        user.setEmail(signupRequest.getEmail());
-        user.setPhone(signupRequest.getPhone());
-        user.setAddress(signupRequest.getAddress());
-        user.setBirth(signupRequest.getBirth());
-        user.setNickname(signupRequest.getNickname());
-        user.setSendEmail(signupRequest.getMarketingPreferences().isSendEmail());
-        user.setSendMessage(signupRequest.getMarketingPreferences().isSendMessage());
-        user.setCash(0);
-        user.setIsAdmin(false);
-
-        LocalDate today = LocalDate.now();
-        LocalDate checkAdult = LocalDate.of(today.getYear() - 19, today.getMonth(), today.getDayOfMonth());
-
-        user.setIsAdult(isDateValid(signupRequest.getBirth(), checkAdult));
-        userRepository.save(user);
-    }
+//    public void registerUser(SignupRequest signupRequest)
+//    {
+//        UserDTO user = new UserDTO();
+//        user.setId(signupRequest.getId());
+//        user.setPassword(signupRequest.getPassword());
+//        user.setName(signupRequest.getName());
+//        user.setEmail(signupRequest.getEmail());
+//        user.setPhone(signupRequest.getPhone());
+//        user.setAddress(signupRequest.getAddress());
+//        user.setBirth(signupRequest.getBirth());
+//        user.setNickname(signupRequest.getNickname());
+//        user.setSendEmail(signupRequest.getMarketingPreferences().isSendEmail());
+//        user.setSendMessage(signupRequest.getMarketingPreferences().isSendMessage());
+//        user.setCash(0);
+//        user.setIsAdmin(false);
+//
+//        LocalDate today = LocalDate.now();
+//        LocalDate checkAdult = LocalDate.of(today.getYear() - 19, today.getMonth(), today.getDayOfMonth());
+//
+//        user.setIsAdult(isDateValid(signupRequest.getBirth(), checkAdult));
+//        userRepository.save(user);
+//    }
 
     // Pass API를 못쓰니까 성인인증도 양심에 맡기는 걸로 하자
     public static boolean isDateValid(LocalDate userInputDate, LocalDate specificDate)

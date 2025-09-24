@@ -35,31 +35,31 @@ public class UserController
         return ResponseEntity.ok(isDuplicate);
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest)
-    {
-        try {
-            // Validate passwords
-            if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
-            {
-                return ResponseEntity.badRequest().body("Passwords do not match.");
-            }
-
-            // Check if ID already exists
-            boolean exists = userService.checkIfIdExists(signupRequest.getId());
-            if (exists)
-            {
-                return ResponseEntity.badRequest().body("ID is already taken.");
-            }
-
-            // Save user details
-            userService.registerUser(signupRequest);
-
-            return ResponseEntity.ok("Signup successful.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("An error occurred: " + e.getMessage());
-        }
-    }
+//    @PostMapping("/signup")
+//    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest)
+//    {
+//        try {
+//            // Validate passwords
+//            if (!signupRequest.getPassword().equals(signupRequest.getConfirmPassword()))
+//            {
+//                return ResponseEntity.badRequest().body("Passwords do not match.");
+//            }
+//
+//            // Check if ID already exists
+//            boolean exists = userService.checkIfIdExists(signupRequest.getId());
+//            if (exists)
+//            {
+//                return ResponseEntity.badRequest().body("ID is already taken.");
+//            }
+//
+//            // Save user details
+//            userService.registerUser(signupRequest);
+//
+//            return ResponseEntity.ok("Signup successful.");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("An error occurred: " + e.getMessage());
+//        }
+//    }
 
     @GetMapping("/finder/id")
     public ResponseEntity<?> findUserId(@RequestParam(required = false) String name,

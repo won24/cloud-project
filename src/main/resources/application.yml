@@ -60,20 +60,6 @@ spring:
     serialization:
       write-dates-as-timestamps: false
 
-# MyBatis 설정 추가
-mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: com.cloud.cloudproject.entity
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: true
-    lazy-loading-enabled: true
-    use-column-label: true
-    use-generated-keys: true
-    auto-mapping-behavior: partial
-    default-executor-type: reuse
-    default-statement-timeout: 25000
-
 # 파일 업로드 경로를 Linux 경로로 변경
 file:
   upload-dir: "/usr/local/tomcat/uploads"
