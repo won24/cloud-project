@@ -10,7 +10,8 @@ RUN gradle dependencies --no-daemon --quiet
 # 소스 코드 복사
 COPY . .
 # WAR 파일 빌드 (테스트 제외하여 빌드 시간 단축)
-RUN gradle clean bootWar -x test --no-daemon
+#RUN gradle clean bootWar -x test --no-daemon
+RUN gradle clean war -x test --no-daemon
 
 # 생성된 WAR 파일 확인 (디버깅용)
 RUN ls -la /app/build/libs/
@@ -26,8 +27,9 @@ RUN set -eux; \
     mkdir -p /usr/local/tomcat/logs; \
     chmod -R 755 /usr/local/tomcat
 
-# WAR만 복사 (캐시 효율을 위해 파일명 고정 권장)
+# ROOT.war 복사
 COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
+
 
 # tomcat 사용자 실행 (권한 변경은 필요 시에만)
 USER 1001
