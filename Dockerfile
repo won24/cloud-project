@@ -47,15 +47,13 @@
 #
 #CMD ["catalina.sh", "run"]
 
+
 # Step 1: Build Stage
 FROM gradle:8.5-jdk17-alpine AS builder
 WORKDIR /app
 
-COPY build.gradle settings.gradle ./
-COPY gradle/ gradle/
-COPY . .
-
-RUN gradle clean bootWar -x test --no-daemon
+COPY --chown=gradle:gradle . .
+RUN gradle clean bootWar -x test --no-daemon --stacktrace
 RUN ls -la /app/build/libs/
 
 # Step 2: Runtime Stage
@@ -63,18 +61,12 @@ FROM tomcat:10.1-jre17 AS runtime
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# tomcat 사용자 존재 확인 없이 기본 tomcat 사용자 권한설정 (필요 시 조정)
-RUN id tomcat || useradd -r -u 1001 tomcat
-RUN chown -R tomcat:tomcat /usr/local/tomcat
-RUN chmod -R 755 /usr/local/tomcat
-
+# 기본 앱들 삭제 및 디렉토리 생성 (권한 설정 제거)
 RUN rm -rf /usr/local/tomcat/webapps/* /usr/local/tomcat/logs/* && \
     mkdir -p /usr/local/tomcat/logs
 
 COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
-RUN chown tomcat:tomcat /usr/local/tomcat/webapps/ROOT.war
 
-USER tomcat
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
