@@ -127,4 +127,10 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
+
+    @GetMapping("/signup")
+    public String signupView() {
+        return "signup/signup"; // WEB-INF/views/signup/signup.jsp 반환
+    }
+
 }
