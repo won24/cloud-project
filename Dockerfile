@@ -64,7 +64,9 @@ ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # tomcat 사용자 존재 확인 없이 기본 tomcat 사용자 권한설정 (필요 시 조정)
-RUN chown -R tomcat:tomcat /usr/local/tomcat && chmod -R 755 /usr/local/tomcat
+RUN id tomcat || useradd -r -u 1001 tomcat
+RUN chown -R tomcat:tomcat /usr/local/tomcat
+RUN chmod -R 755 /usr/local/tomcat
 
 RUN rm -rf /usr/local/tomcat/webapps/* /usr/local/tomcat/logs/* && \
     mkdir -p /usr/local/tomcat/logs
