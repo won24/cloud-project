@@ -7,10 +7,7 @@ node_modules/
 *.jar
 #*.war
 
-!build/
-!build/libs/
-!build/libs/ROOT.war
-!*.war
+
 
 # IDE files
 .idea/
@@ -39,3 +36,9 @@ nginx/default.conf
 
 # 테스트 코드
 src/test/
+
+
+!build/
+!build/libs/
+!build/libs/ROOT.war
+!*.war
