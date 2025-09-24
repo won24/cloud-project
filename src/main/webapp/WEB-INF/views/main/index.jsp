@@ -43,7 +43,7 @@
         </div>
     </div>
 
-<%--    <div class="mainCategoryContainer">
+    <div class="mainCategoryContainer">
         <!-- 메인 페이지 하단 카테고리 -->
         <div class="textContainer">
             <p>CATEGORY</p>
@@ -70,7 +70,7 @@
             <a href="/auction/valuables"></a>
             <p class="valaublesText">귀중품</p>
         </div>
-    </div>--%>
+    </div>
 </div>
 
 <script>
