@@ -1,6 +1,9 @@
 # Build artifacts
 build/
 target/
+out/
+dist/
+node_modules/
 *.jar
 *.war
 
@@ -12,6 +15,7 @@ target/
 # Git
 .git/
 .gitignore
+.github/
 
 # Docker files
 Dockerfile*
@@ -24,3 +28,9 @@ docs/
 # Logs
 logs/
 *.log
+
+# Nginx
+nginx/default.conf
+
+# 테스트 코드
+src/test/

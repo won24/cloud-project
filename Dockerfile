@@ -15,33 +15,23 @@ RUN gradle clean bootWar -x test --no-daemon
 # 생성된 WAR 파일 확인 (디버깅용)
 RUN ls -la /app/build/libs/
 
-# Step 2: Runtime Stage - JRE 사용으로 크기 최적화
-FROM tomcat:10.1-jre17 AS runtime
+# Runtime Stage (경량 최적화)
+FROM tomcat:10.1-jre17
 
-# 타임존 설정
 ENV TZ=Asia/Seoul
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# 1) 타임존, 2) 불필요 기본앱 삭제, 3) 권한/디렉터리 작업
+RUN set -eux; \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone; \
+    rm -rf /usr/local/tomcat/webapps/*; \
+    mkdir -p /usr/local/tomcat/logs; \
+    chmod -R 755 /usr/local/tomcat
 
-# tomcat 사용자 확인 및 권한 설정
-#RUN id tomcat || useradd -r -u 1001 tomcat
-#RUN chmod -R 755 /usr/local/tomcat
-
-# 불필요한 기본 앱들 삭제하여 크기 최적화
-RUN rm -rf /usr/local/tomcat/webapps/* && \
-    rm -rf /usr/local/tomcat/logs/*
-#    mkdir -p /usr/local/tomcat/logs
-
-# WAR 파일 복사 및 권한 설정
+# WAR만 복사 (캐시 효율을 위해 파일명 고정 권장)
 COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
-RUN chown tomcat:tomcat /usr/local/tomcat/webapps/ROOT.war
 
-## tomcat 사용자로 실행
-#USER tomcat
+# tomcat 사용자 실행 (권한 변경은 필요 시에만)
+USER 1001
 
 EXPOSE 8080
 
-## 헬스체크 추가
-#HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
-#    CMD curl -f http://localhost:8080/ || exit 1
-
-#CMD ["catalina.sh", "run"]
+CMD ["catalina.sh", "run"]
