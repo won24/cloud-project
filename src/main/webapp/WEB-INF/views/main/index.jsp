@@ -43,34 +43,34 @@
         </div>
     </div>
 
-<%--    <div class="mainCategoryContainer">--%>
-<%--        <!-- 메인 페이지 하단 카테고리 -->--%>
-<%--        <div class="textContainer">--%>
-<%--            <p>CATEGORY</p>--%>
-<%--            <hr/>--%>
-<%--            <p>주요 카테고리</p>--%>
-<%--        </div>--%>
-<%--        <div class="antiqueContainer">--%>
-<%--            <a href="/auction/antique"></a>--%>
-<%--            <p class="antiqueText">골동품</p>--%>
-<%--        </div>--%>
-<%--        <div class="limitedContainer">--%>
-<%--            <a href="/auction/limited"></a>--%>
-<%--            <p class="limitedText">한정판</p>--%>
-<%--        </div>--%>
-<%--        <div class="discontinuationContainer">--%>
-<%--            <a href="/auction/discontinuation"></a>--%>
-<%--            <p class="discontinuationText">단종품</p>--%>
-<%--        </div>--%>
-<%--        <div class="artproductContainer">--%>
-<%--            <a href="/auction/artproduct"></a>--%>
-<%--            <p class="artproductText">예술품</p>--%>
-<%--        </div>--%>
-<%--        <div class="valuablesContainer">--%>
-<%--            <a href="/auction/valuables"></a>--%>
-<%--            <p class="valaublesText">귀중품</p>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="mainCategoryContainer">
+        <!-- 메인 페이지 하단 카테고리 -->
+        <div class="textContainer">
+            <p>CATEGORY</p>
+            <hr/>
+            <p>주요 카테고리</p>
+        </div>
+        <div class="antiqueContainer">
+            <a href="/auction/antique"></a>
+            <p class="antiqueText">골동품</p>
+        </div>
+        <div class="limitedContainer">
+            <a href="/auction/limited"></a>
+            <p class="limitedText">한정판</p>
+        </div>
+        <div class="discontinuationContainer">
+            <a href="/auction/discontinuation"></a>
+            <p class="discontinuationText">단종품</p>
+        </div>
+        <div class="artproductContainer">
+            <a href="/auction/artproduct"></a>
+            <p class="artproductText">예술품</p>
+        </div>
+        <div class="valuablesContainer">
+            <a href="/auction/valuables"></a>
+            <p class="valaublesText">귀중품</p>
+        </div>
+    </div>
 </div>
 
 <script>
