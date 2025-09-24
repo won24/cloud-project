@@ -16,8 +16,7 @@ RUN gradle clean bootWar -x test --no-daemon
 RUN ls -la /app/build/libs/
 
 # Runtime Stage (경량 최적화)
-#FROM tomcat:10.1-jre17
-FROM temurin-17-jre-slim-alpine
+FROM tomcat:10.1-jre17
 
 ENV TZ=Asia/Seoul
 # 1) 타임존, 2) 불필요 기본앱 삭제, 3) 권한/디렉터리 작업
@@ -32,7 +31,5 @@ COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # tomcat 사용자 실행 (권한 변경은 필요 시에만)
 USER 1001
-
 EXPOSE 8080
-
 CMD ["catalina.sh", "run"]
