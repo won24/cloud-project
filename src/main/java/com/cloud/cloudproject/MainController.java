@@ -28,27 +28,5 @@ public class MainController {
         model.addAttribute("contentPage", "../policy/privacy.jsp");
         return "common/layout";
     }
-
-    @RequestMapping("/mypage/**")
-    public String mypage(HttpServletRequest request, Model model) {
-        model.addAttribute("title", "마이페이지");
-        model.addAttribute("contentPage", "../mypage/layout.jsp");
-
-        // URL에 따른 하위 컨텐츠 설정
-        String uri = request.getRequestURI();
-        if (uri.contains("/myfar")) {
-            model.addAttribute("mypageContent", "../mypage/myfar.jsp");
-        } else if (uri.contains("/myprofile")) {
-            model.addAttribute("mypageContent", "../mypage/myprofile.jsp");
-        } else if (uri.contains("/myauctionitem")) {
-            model.addAttribute("mypageContent", "../mypage/myauctionitem.jsp");
-        } else if (uri.contains("/myauction")) {
-            model.addAttribute("mypageContent", "../mypage/myauction.jsp");
-        } else {
-            model.addAttribute("mypageContent", "../mypage/main.jsp");
-        }
-
-        return "common/layout";
-    }
 }
 
