@@ -52,9 +52,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # RUN rm -rf /usr/local/tomcat/webapps/*
 
 # 로컬/CI에서 생성된 WAR만 복사
-COPY /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
-
-
+COPY build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
 
