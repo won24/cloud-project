@@ -7,13 +7,18 @@ plugins {
 
 // WAR 패키징을 위한 설정
 bootWar {
-    archiveBaseName = 'ROOT'
-    archiveFileName = 'ROOT.war'
-    archiveVersion = ''
-}
-war {
+//    archiveBaseName = 'ROOT'
+//    archiveFileName = 'ROOT.war'
+//    archiveVersion = ''
     enabled = false
 }
+war {
+    enabled = true
+    archiveBaseName = 'ROOT'
+    archiveVersion = ''
+    archiveFileName = 'ROOT.war'
+}
+
 
 configurations {
     providedRuntime
@@ -34,7 +39,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat' // 중복 방지[web:123]
+    }
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
     implementation 'org.projectlombok:lombok'
@@ -43,8 +50,11 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+//    providedRuntime 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper') {
+        // 불필요 전이 제거 예시
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
@@ -53,4 +63,16 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.processResources {
+    exclude '**/*.map', '**/*.psd', '**/*.orig', '**/*.bak'
+    exclude '**/docs/**', '**/examples/**', '**/samples/**'
+}
+
+tasks.register('printWarSize') {
+    doLast {
+        def war = file("$buildDir/libs/ROOT.war")
+        if (war.exists()) println "WAR size: ${war.length() / 1024 / 1024} MB"
+    }
 }

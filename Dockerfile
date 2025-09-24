@@ -16,7 +16,8 @@ RUN gradle clean bootWar -x test --no-daemon
 RUN ls -la /app/build/libs/
 
 # Runtime Stage (경량 최적화)
-FROM tomcat:10.1-jre17
+#FROM tomcat:10.1-jre17
+FROM temurin-17-jre-slim-alpine
 
 ENV TZ=Asia/Seoul
 # 1) 타임존, 2) 불필요 기본앱 삭제, 3) 권한/디렉터리 작업
