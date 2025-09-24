@@ -22,6 +22,7 @@ FROM tomcat:10.1-jre17 AS runtime
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+
 # tomcat 사용자 확인 및 권한 설정
 #RUN id tomcat || useradd -r -u 1001 tomcat
 #RUN chmod -R 755 /usr/local/tomcat
@@ -30,6 +31,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN rm -rf /usr/local/tomcat/webapps/* && \
     rm -rf /usr/local/tomcat/logs/*
 #    mkdir -p /usr/local/tomcat/logs
+
 
 # WAR 파일 복사 및 권한 설정
 COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
@@ -43,5 +45,6 @@ EXPOSE 8080
 ## 헬스체크 추가
 #HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
 #    CMD curl -f http://localhost:8080/ || exit 1
+
 
 #CMD ["catalina.sh", "run"]
