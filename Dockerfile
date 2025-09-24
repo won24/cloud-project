@@ -14,6 +14,7 @@ COPY . .
 RUN gradle clean war -x test --no-daemon
 
 # 생성된 WAR 파일 확인 (디버깅용)
+RUN gradle clean war -x test --no-daemon --stacktrace --info
 RUN ls -la /app/build/libs/
 
 # Runtime Stage (경량 최적화)
