@@ -52,6 +52,11 @@ jobs:
           mask-password: 'true'
 
 
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+        working-directory: .
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
