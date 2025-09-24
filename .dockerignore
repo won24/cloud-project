@@ -1,13 +1,11 @@
 # Build artifacts
-#build/
+build/
 target/
 out/
 dist/
 node_modules/
 *.jar
-#*.war
-
-
+*.war
 
 # IDE files
 .idea/

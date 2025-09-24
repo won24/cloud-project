@@ -44,15 +44,8 @@
 
 FROM tomcat:10.1-jre17
 
-# 선택: 타임존만 설정(최소화 유지)
-ENV TZ=Asia/Seoul
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-# 기본 앱 삭제 없이 그대로 유지(완전 기본 지향)
-# RUN rm -rf /usr/local/tomcat/webapps/*
-
-# 로컬/CI에서 생성된 WAR만 복사
 COPY build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
 
