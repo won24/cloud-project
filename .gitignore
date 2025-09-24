@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+.gradle/
 
 ### STS ###
 .apt_generated
@@ -35,3 +36,16 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# CI/배포
+.github/
+
+# Nginx 및 프런트 배포 산출물
+nginx/default.conf
+
+# 테스트
+src/test/
+
+# 이미 포함된 항목 보강
+dist/
+node_modules/
