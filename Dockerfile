@@ -23,26 +23,25 @@ ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # tomcat 사용자 확인 및 권한 설정
-RUN id tomcat || useradd -r -u 1001 tomcat
-RUN chown -R tomcat:tomcat /usr/local/tomcat
-RUN chmod -R 755 /usr/local/tomcat
+#RUN id tomcat || useradd -r -u 1001 tomcat
+#RUN chmod -R 755 /usr/local/tomcat
 
 # 불필요한 기본 앱들 삭제하여 크기 최적화
 RUN rm -rf /usr/local/tomcat/webapps/* && \
-    rm -rf /usr/local/tomcat/logs/* && \
-    mkdir -p /usr/local/tomcat/logs
+    rm -rf /usr/local/tomcat/logs/*
+#    mkdir -p /usr/local/tomcat/logs
 
 # WAR 파일 복사 및 권한 설정
 COPY --from=builder /app/build/libs/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 RUN chown tomcat:tomcat /usr/local/tomcat/webapps/ROOT.war
 
-# tomcat 사용자로 실행
-USER tomcat
+## tomcat 사용자로 실행
+#USER tomcat
 
 EXPOSE 8080
 
-# 헬스체크 추가
-HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8080/ || exit 1
+## 헬스체크 추가
+#HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+#    CMD curl -f http://localhost:8080/ || exit 1
 
-CMD ["catalina.sh", "run"]
+#CMD ["catalina.sh", "run"]
