@@ -6,9 +6,6 @@ WORKDIR /app
 COPY settings.gradle build.gradle ./
 COPY gradle/ gradle/
 
-# 의존성만 먼저 다운로드 (캐싱 효율성 향상)
-#RUN gradle dependencies --no-daemon --quiet
-
 # Gradle 캐시 마운트로 의존성 재사용
 RUN --mount=type=cache,id=gradle-cache,target=/home/gradle/.gradle \
     gradle dependencies --no-daemon --quiet
@@ -16,12 +13,9 @@ RUN --mount=type=cache,id=gradle-cache,target=/home/gradle/.gradle \
 # 소스 복사 후 빌드
 COPY . .
 # WAR 파일 빌드 (테스트 제외하여 빌드 시간 단축)
-#RUN gradle clean war -x test --no-daemon
 RUN --mount=type=cache,id=gradle-cache,target=/home/gradle/.gradle \
     gradle clean war -x test --no-daemon
 
-## 생성된 WAR 파일 확인 (디버깅용)
-#RUN ls -la /app/build/libs/
 
 # Runtime Stage (경량 최적화)
 FROM tomcat:10.1-jre17
